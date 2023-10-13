@@ -1,0 +1,28 @@
+version: '3'
+services:
+  student-server:
+    build: .
+    ports:
+      - "8000:8000"
+    db:
+      image: mysql:lastest
+      container_name: db
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE : student
+      ports:
+        - "3306:3306"
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin:lastest
+      container_name: phpmyadmin
+      environment:
+        PMA_HOST: db
+        PMA_PORT: 3306
+        PMA_USER: root
+        PMA_PASSWORD:
+      restart: always
+      ports:
+        - 8080:8080
+        
+
+  
