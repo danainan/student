@@ -9,10 +9,12 @@ import (
 
 func SetUpRoutes(app *fiber.App) {
 	api := app.Group("api", logger.New())
-	api.Get("/", handler.Hello)
-	api.Get("/GetAllStudent", handler.GetAllStudent)
-	api.Get("/GetById/:id", handler.GetById)
-	api.Post("/CreateStudent", handler.CreateStudent)
-	api.Put("/UpdateStudent/:id", handler.UpdateStudent)
-	api.Delete("/DeleteStudent/:id", handler.DeleteStudent)
+
+	studentHandler := studenthandler.NewStudentHandler()
+
+	api.Get("/GetAllStudent", studentHandler.GetAllStudent)
+	api.Get("/GetById/:student_id", studentHandler.GetById)
+	api.Post("/CreateStudent", studentHandler.CreateStudent)
+	api.Put("/UpdateStudent/:student_id", studentHandler.UpdateStudent)
+	api.Delete("/DeleteStudent/:student_id", studentHandler.DeleteStudent)
 }
