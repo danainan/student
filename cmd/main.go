@@ -32,8 +32,15 @@ func main() {
 		}),
 	)
 
+	//CORS
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "*",
+		AllowMethods: "GET, POST, PUT, DELETE",
+		AllowHeaders: "Origin, Content-Type, Accept",
+	}))
+
 	router.SetUpRoutes(app)
 
-	log.Fatal(app.Listen(":8000"))
+	log.Fatal(app.Listen(":8080"))
 
 }

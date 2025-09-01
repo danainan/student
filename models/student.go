@@ -2,13 +2,17 @@ package models
 
 import (
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type Student struct {
+	gorm.Model
+
 	ID          string    `gorm:"primary_key" json:"id"`
-	StudentID   string    `json:"student_id"`
-	Fname       string    `json:"fname"`
-	Lname       string    `json:"lname"`
-	CreatedDate time.Time `json:"created_date"`
-	UpdatedDate time.Time `json:"updated_date"`
+	StudentID   int       `gorm:"column:student_id" json:"student_id"`
+	Fname       string    `gorm:"column:fname" json:"fname"`
+	Lname       string    `gorm:"column:lname" json:"lname"`
+	CreatedDate time.Time `gorm:"column:created_date" json:"created_date"`
+	UpdatedDate time.Time `gorm:"column:updated_date" json:"updated_date"`
 }
